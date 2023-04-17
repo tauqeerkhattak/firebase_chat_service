@@ -9,6 +9,6 @@ export class UserModel {
   }
 
   toJson(): any {
-    return JSON.stringify(this);
+    return JSON.parse(JSON.stringify(this));
   }
 }

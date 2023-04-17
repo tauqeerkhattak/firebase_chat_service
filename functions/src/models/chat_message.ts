@@ -17,4 +17,8 @@ export class ChatMessage {
     message.authorUid = json["authorUid"];
     return message;
   }
+
+  toJson(): any {
+    return JSON.parse(JSON.stringify(this));
+  }
 }

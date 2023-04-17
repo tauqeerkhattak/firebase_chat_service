@@ -10,7 +10,7 @@ export class Chat {
   }
 
   toJson(): any {
-    return JSON.stringify(this);
+    return JSON.parse(JSON.stringify(this));
   }
 
   getOtherMember(authorUid: string): UserModel {
