@@ -12,4 +12,11 @@ export class Chat {
   toJson(): any {
     return JSON.stringify(this);
   }
+
+  getOtherMember(authorUid: string): UserModel {
+    const members = this.members?.filter((member) => {
+      return member.uid !== authorUid;
+    });
+    return members![0];
+  }
 }
