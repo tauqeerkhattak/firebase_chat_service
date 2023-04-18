@@ -6,7 +6,8 @@ export class NotificationService {
       title: string,
       body: string,
       token: string,
-      chatId?: string
+      chatId: string,
+      author: string,
   ):
     Promise<boolean> {
     try {
@@ -16,9 +17,10 @@ export class NotificationService {
           body: body,
         },
         token: token,
-        data: chatId ? {
+        data: {
           chat_id: chatId,
-        } : {},
+          author: author,
+        },
       });
       return true;
     } catch (e) {

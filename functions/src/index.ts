@@ -17,13 +17,15 @@ exports.listenToChat = functions
         const chat: Chat = Chat.fromJson(doc.data());
         const chatMessage: ChatMessage = ChatMessage.fromJson(snapshot.data());
         const otherMember = chat.getOtherMember(chatMessage.authorUid!);
+        const meUser = chat.getMe(chatMessage.authorUid!);
         if (chatMessage.message != null) {
           if (otherMember.token != null) {
             await notificationService.sendNotification(
                 otherMember.name ?? "New message received!",
                 chatMessage.message,
                 otherMember.token,
-                chat.chatId,
+                chat.chatId ?? "",
+                meUser.name ?? "Author"
             );
           }
         }
