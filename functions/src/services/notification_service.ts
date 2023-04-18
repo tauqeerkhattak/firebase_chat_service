@@ -2,7 +2,12 @@ import {fcm} from "./admin";
 
 
 export class NotificationService {
-  async sendNotification(title: string, body: string, token: string):
+  async sendNotification(
+      title: string,
+      body: string,
+      token: string,
+      chatId?: string
+  ):
     Promise<boolean> {
     try {
       await fcm.send({
@@ -11,6 +16,9 @@ export class NotificationService {
           body: body,
         },
         token: token,
+        data: chatId ? {
+          chat_id: chatId,
+        } : {},
       });
       return true;
     } catch (e) {

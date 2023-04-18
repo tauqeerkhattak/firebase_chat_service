@@ -20,9 +20,10 @@ exports.listenToChat = functions
         if (chatMessage.message != null) {
           if (otherMember.token != null) {
             await notificationService.sendNotification(
-                "New message received!",
+                otherMember.name ?? "New message received!",
                 chatMessage.message,
                 otherMember.token,
+                chat.chatId,
             );
           }
         }
