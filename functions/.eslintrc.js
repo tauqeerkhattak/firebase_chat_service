@@ -29,5 +29,9 @@ module.exports = {
     "import/no-unresolved": 0,
     "require-jsdoc": 0,
     "no-unused-vars": 0,
+    "no-trailing-spaces": 0,
+    "no-eq-null": 0,
+    "no-non-null-assertion": 0,
+    "no-explicit-any": 0,
   },
 };

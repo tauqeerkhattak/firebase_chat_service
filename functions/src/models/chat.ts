@@ -1,12 +1,25 @@
 import {UserModel} from "./user_model";
 
 export class Chat {
-  chatId?: string;
-  members?: UserModel[];
-  memberUids?: string[];
+  chatId: string;
+  members: UserModel[];
+  memberUids: string[];
+  
+  constructor(chatId: string, members: UserModel[], memberUids: string[]) {
+    this.chatId = chatId;
+    this.members = members;
+    this.memberUids = memberUids;
+  }
 
   static fromJson(json: any): Chat {
-    return Object.assign(new Chat(), json);
+    const members = json["members"].map((member: any) => {
+      return UserModel.fromJson(member);
+    });
+    return new Chat(
+        json["chatId"],
+        members,
+        json["memberUids"],
+    );
   }
 
   toJson(): any {
@@ -17,13 +30,13 @@ export class Chat {
     const members = this.members?.filter((member) => {
       return member.uid !== authorUid;
     });
-    return members![0];
+    return members[0];
   }
 
   getMe(authorUid: string): UserModel {
     const members = this.members?.filter((member) => {
       return member.uid == authorUid;
     });
-    return members![0];
+    return members[0];
   }
 }
